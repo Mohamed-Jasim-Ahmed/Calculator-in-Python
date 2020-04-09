@@ -23,7 +23,15 @@ class Calculator(Frame):
                 butt = Button(frame, text = char, bg = 'white',
                               command =  lambda stored = display, ch = char: stored.set(stored.get()+ch))
                 butt.pack(side = LEFT, expand = YES, fill = BOTH)
+        
+        equal_butt = Button(self, text ="=", bg= 'white', bd = 2,
+                            command = lambda stored = display: evaluate(stored) )
+        equal_butt.pack(side = TOP, expand = YES, fill = BOTH)
 
-
+def evaluate(stored):
+    try:
+        stored.set(eval(stored.get()))
+    except:
+        stored.set('ERROR')
 
 Calculator().mainloop()
